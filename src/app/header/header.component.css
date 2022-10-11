@@ -1,0 +1,39 @@
+header{
+    background-color: #fff;
+    padding: 0;
+    border-bottom: 1px solid rgb(156, 113, 113);
+}
+
+a{
+    color: #c15959;
+    text-decoration: none;
+}
+a:hover{
+    background-color: #c15959;
+    color: white;
+}
+.container{
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+}
+a.logo{
+    font-weight: bold;
+    padding: 1em;
+}
+
+nav ul{
+    list-style: none;
+    margin: 0;
+}
+nav ul li a{
+    padding: 1em ;
+    display: inline-block;
+}
+
+span{
+    background: #e72929;
+    color: white;
+    padding: 0.7rem;
+    border-radius: 2rem;
+}

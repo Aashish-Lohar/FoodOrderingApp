@@ -1,0 +1,56 @@
+.card{
+    margin-top: 2rem;
+    width: 60%;
+}
+img{
+    width: 25%;
+    height: auto;
+}
+.item-content{
+    margin-left:1rem;
+}
+input{
+    width: 20%;
+    text-align: center;
+    background: transparent;
+    border: none;
+}
+
+.remove,.order{
+    margin: 1rem;
+}
+.text-center{
+    position: relative;
+    top: 40vh;
+}
+.cart-btns{
+    display: flex;
+    flex-direction: column;
+}
+
+.checkout{
+    position: sticky;
+    bottom: 0;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    padding: 1rem;
+    color: white;
+    background: #e72929;
+    border: 1px solid #ddd8d8;
+    border-radius: 1rem;
+}
+
+.favorite{
+    color: red;
+    text-align: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
+
+.favorite.not{
+    color: black;
+    text-align: center;
+    font-size: 2rem;
+    cursor: pointer;
+}
