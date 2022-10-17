@@ -3,6 +3,8 @@ import { Routes, RouterModule } from '@angular/router'; // CLI imports router
 import { CartComponent } from './cart/cart.component';
 import { FoodPageComponent } from './food-page/food-page.component';
 import { HomeComponent } from './home/home.component';
+import { LoginComponent } from './login/login.component';
+import { RegisterComponent } from './register/register.component';
 import { TesComponent } from './tes/tes.component';
 
 const routes: Routes = [
@@ -12,6 +14,8 @@ const routes: Routes = [
   {path:'tes',component:TesComponent},
   {path:'food/:id',component:FoodPageComponent},
   {path:'cart',component:CartComponent},
+  {path:'login',component:LoginComponent},
+  {path:'register',component:RegisterComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
 ]; // sets up routes constant where you define your routes
 
