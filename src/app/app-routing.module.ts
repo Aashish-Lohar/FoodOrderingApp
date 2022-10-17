@@ -4,6 +4,7 @@ import { CartComponent } from './cart/cart.component';
 import { FoodPageComponent } from './food-page/food-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { TesComponent } from './tes/tes.component';
 
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path:'cart',component:CartComponent},
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
+  {path:'profile',component:ProfileComponent},
   {path:'', redirectTo:'home', pathMatch:'full'},
 ]; // sets up routes constant where you define your routes
 

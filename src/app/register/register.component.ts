@@ -10,6 +10,7 @@ import { DataService } from '../data.service';
 export class RegisterComponent implements OnInit {
   states:string[] = [ "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Delhi","Lakshadweep","Puducherry"]
   constructor(private data:DataService) { }
+  visible:boolean=false;
   myRegister!:FormGroup;
   ngOnInit(): void {
     this.myRegister=new FormGroup({
@@ -29,7 +30,17 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(){
     // console.log('confirm',this.myRegister.value);
-    this.data.onRegister(this.myRegister.value);
+    this.data.onRegister(this.myRegister.value).subscribe((item)=>{
+      console.log("item",item);
+      // this.router.navigate(['/home'])
+      if(item.success)
+      {
+        this.visible=true;
+        // alert('user registered successfully')
+      }
+     },
+     (error)=>console.log(error)
+     );
   }
 
 }

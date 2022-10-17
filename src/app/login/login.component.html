@@ -16,9 +16,9 @@
             Password must be of minimum length 6.
           </div>
         </div>
-        <div class="btn-container d-flex">
+        <div class="btn-container">
             <button [disabled]="myLogin.invalid" type="submit" class="btn btn-primary">Log In</button>
-            <button class="btn btn-primary" style="margin-left: 20px;" (click)="myLogin.reset()">Reset</button>
+            <!-- <button class="btn btn-primary" style="margin-left: 20px;" (click)="myLogin.reset()">Reset</button> -->
         </div>
         <p class="text-center mt-3">
             <a routerLink="/register"  style="font-size: 0.75rem;">Don't have an account, register now</a>

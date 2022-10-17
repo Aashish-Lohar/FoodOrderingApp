@@ -20,7 +20,20 @@ export class LoginComponent implements OnInit {
 
   onSubmit(){
     // console.log(this.myLogin)
-    this.data.onLogin(this.myLogin.value.email,this.myLogin.value.password)
+    this.data.onLogin(this.myLogin.value).subscribe((item)=>{
+      // console.log("item",item)
+      if(item.success){
+        alert(item.success);
+        localStorage.setItem("token",item.token);
+        console.log("item",item)
+      }
+      else{
+        alert(item.message);
+      }
+     },
+     err=>{
+      alert("Login failed")
+     });
   }
 
 }
