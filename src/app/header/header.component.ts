@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 import { CartService } from '../services/cart.service';
 
 @Component({
@@ -8,13 +10,10 @@ import { CartService } from '../services/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private cs:CartService) { }
+  constructor(private cs:CartService,private router:Router, private ds:DataService) { }
   cartContent:number=0;
+
   ngOnInit(): void {
-  // this.cs.getCart().map(item=>{
-  //     this.cartContent+=item.quantity;
-  //   });
-  //   console.log('cart number',this.cartContent);
   }
 
   ngDoCheck(){
@@ -23,6 +22,16 @@ export class HeaderComponent implements OnInit {
       this.cartContent+=item.quantity;
     });
     console.log('cart number',this.cartContent);
+    
+  }
+
+  logOut(){
+    localStorage.removeItem('token');
+    this.router.navigate(['/home'])
+  }
+
+  isAuth(){
+    return this.ds.isAuth();
   }
 
 }

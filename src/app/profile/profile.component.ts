@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { DataService } from '../data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,7 +9,7 @@ import { DataService } from '../data.service';
 export class ProfileComponent implements OnInit {
 
   constructor(private data:DataService) { }
-  userData!:any;
+  userData:any={};
   ngOnInit(): void {
     this.getProfile();
   }

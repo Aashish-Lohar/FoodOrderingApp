@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FoodService } from '../services/food.service';
 import { StarRatingComponent } from 'ng-starrating';
 import { ActivatedRoute } from '@angular/router';
+import { CartService } from '../services/cart.service';
+import { DataService } from '../services/data.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -9,7 +11,10 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class HomeComponent implements OnInit {
 
-  constructor(private fs:FoodService, private route:ActivatedRoute) { }
+  constructor(private fs:FoodService,
+              private route:ActivatedRoute,
+              private cs:CartService,
+              private ds:DataService) { }
   food:any[]=[];
   ngOnInit(): void {
     this.route.params.subscribe(params=>{
@@ -22,6 +27,12 @@ export class HomeComponent implements OnInit {
       else{    this.food=this.fs.getAll()}
     })
 
+    // update cart from database 
+    this.ds.getProfile().subscribe((result)=>{
+      if(result.success){
+        this.cs.cart=result.data.cart;
+      }
+    })
 
   }
 

@@ -2,9 +2,9 @@
   <strong>Success!</strong> This alert box could indicate a successful or positive action.
 </div>
 
-<form [formGroup]="myRegister" (ngSubmit)="onSubmit()" class="container card mt-5 px-4" style="width: 30rem;">
-
-    <div class="form-row row mt-2">
+<form [formGroup]="myRegister" (ngSubmit)="onSubmit()" class="container card mt-3 px-4" style="width: 30rem;">
+  <h1 class="text-center mb-3" style="color: #e72929;">Register Now</h1>
+    <div class="form-row row mt-0">
         <div class="form-group col-md-6">
             <label for="inputFirstName">First Name</label>
             <input formControlName="firstName" type="text" class="form-control" id="inputFirstName" placeholder="First Name">
@@ -71,7 +71,7 @@
         </select>
         
       </div>
-      <div class="form-group col-md-4 mt-3">
+      <div class="form-group col-md-4 mt-2">
         <label for="inputZip">Pincode</label>
         <input formControlName="pincode" type="number" class="form-control" id="inputZip">
         <div class="text-danger" style="font-size: 0.75rem;" *ngIf="!(myRegister.get('pincode')?.valid ||myRegister.get('pincode')?.untouched)">

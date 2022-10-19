@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
+import { DataService } from '../services/data.service';
 import { FoodService } from '../services/food.service';
 import { CartItem } from '../shared/models/cartItem';
 
@@ -10,15 +11,16 @@ import { CartItem } from '../shared/models/cartItem';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private cs:CartService, private fs:FoodService) { }
+  constructor(private cs:CartService, private fs:FoodService, private ds:DataService) { }
   items!:CartItem[];
   sum:number=0;
   ngOnInit(): void {
+
     this.items=this.cs.getCart()
     console.log("cart",this.items)
     this.items.map(item=> this.sum+=item.price);
     console.log(this.sum)
-    
+    this.cartItemToDB();
   }
   changeQty(item:CartItem,qty:string){
     this.cs.changeQuantity(item,qty)
@@ -31,5 +33,13 @@ export class CartComponent implements OnInit {
   addToFav(id:number){
     this.fs.addToFav(id)
   }
+  cartItemToDB(){
+    if(this.ds.isAuth()){//cart item added to db if user is logged in 
+          this.cs.addToDB().subscribe((cartResp)=>{
+            console.log("cartResp",cartResp),
+            (err:any)=>console.log(err)
+          })
+        }
+      }
 
 }

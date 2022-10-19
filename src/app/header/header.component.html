@@ -3,10 +3,13 @@
         <a routerLink="/home" class="logo">Gorana 😊 Food corner</a>
         <nav>
             <ul class="d-flex align-items-center">
-                <li>
+                <li *ngIf="!isAuth()">
                     <a routerLink="/login">Login</a>
                 </li>
-                <li>
+                <li *ngIf="isAuth()">
+                    <a (click)="logOut()">Log Out</a>
+                </li>
+                <li *ngIf="isAuth()">
                     <a routerLink="/profile">Profile</a>
                 </li>
                 <li>

@@ -11,23 +11,37 @@ export class DataService {
 
   constructor(private http:HttpClient,private router:Router) { }
 
+  loggedIn:boolean=false;
 
+
+  // login function 
   onLogin(loginForm:Object):Observable<any>{
-    // console.log("email password",loginForm)
     return this.http.post(`http://localhost:3000/login`,loginForm);
   }
 
 
+  // register function 
   onRegister(user:Object):Observable<any>{
-    // console.log('user',user)
      return this.http.post('http://localhost:3000/register',user)
   }
 
+  // user profile function 
   getProfile():Observable<any>{
     let headers={
       'Authorization':"Bearer " + localStorage.getItem('token')
     }
     return this.http.get('http://localhost:3000/profile',{headers:headers});
   }
+
+  // check user is loggedin 
+  isAuth(){
+    if(localStorage.getItem('token')){
+      return true;
+    }
+    else{
+      return false;
+    }
+  }
+
    
 }

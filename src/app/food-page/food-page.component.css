@@ -14,8 +14,8 @@ img{
     border-radius: 3rem;
     flex: 1 0;
     object-fit: cover;
-    height: 30rem;
-    margin: 1rem;
+    width: 80%;
+    margin: 3rem;
 }
 .details{
     width: 100%;

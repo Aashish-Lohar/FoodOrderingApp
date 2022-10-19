@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../data.service';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-register',
@@ -36,10 +36,12 @@ export class RegisterComponent implements OnInit {
       if(item.success)
       {
         this.visible=true;
-        // alert('user registered successfully')
+        alert('user registered successfully');
       }
      },
-     (error)=>console.log(error)
+     (error)=>{
+      alert('error in registering the user');
+      console.log(error)}
      );
   }
 

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { DataService } from '../data.service';
+import { DomSanitizer } from '@angular/platform-browser';
+import { Router } from '@angular/router';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-login',
@@ -9,7 +11,7 @@ import { DataService } from '../data.service';
 })
 export class LoginComponent implements OnInit {
   myLogin!:FormGroup;
-  constructor(private data:DataService) { }
+  constructor(private data:DataService, private router:Router) { }
 
   ngOnInit(): void {
     this.myLogin=new FormGroup({
@@ -25,14 +27,15 @@ export class LoginComponent implements OnInit {
       if(item.success){
         alert(item.success);
         localStorage.setItem("token",item.token);
-        console.log("item",item)
+        this.data.isAuth()
+        this.router.navigate(['/home']);
       }
       else{
         alert(item.message);
       }
      },
-     err=>{
-      alert("Login failed")
+     (err)=>{
+      alert(err)
      });
   }
 
