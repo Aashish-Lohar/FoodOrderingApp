@@ -1,6 +1,10 @@
+.container-cart{
+    display: flex;
+}
+
 .card{
     margin-top: 2rem;
-    width: 60%;
+    width: 66%;
 }
 img{
     width: 30%;
@@ -33,11 +37,14 @@ input{
 }
 
 .checkout{
+    font-size: 1.5rem;
     position: sticky;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    width: 100%;
+    top: 4rem;
+    height: 7rem;
+    text-align: center;
+    /* display: flex; */
+    /* justify-content: space-between; */
+    width: 33%;
     padding: 1rem;
     color: white;
     background: #e72929;

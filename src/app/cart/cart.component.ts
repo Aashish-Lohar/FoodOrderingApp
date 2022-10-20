@@ -15,31 +15,36 @@ export class CartComponent implements OnInit {
   items!:CartItem[];
   sum:number=0;
   ngOnInit(): void {
-
-    this.items=this.cs.getCart()
-    console.log("cart",this.items)
-    this.items.map(item=> this.sum+=item.price);
-    console.log(this.sum)
-    this.cartItemToDB();
+    // this.cartItemToDB();
+    this.loadCart()
   }
   changeQty(item:CartItem,qty:string){
     this.cs.changeQuantity(item,qty)
     this.sum=this.cs.totalPrice();
+    this.cartItemToDB();
   }
   removeFromCart(index:number){
     this.cs.removeFromCart(index)
     this.sum=this.cs.totalPrice();
+    this.cartItemToDB();
   }
   addToFav(id:number){
+    // console.log('fav id',id)
     this.fs.addToFav(id)
+  }
+  loadCart(){
+    this.items= this.ds.isAuth()? this.cs.getCart():[]
+    this.items.map(item=> this.sum+=item.food.price*item.quantity);
   }
   cartItemToDB(){
     if(this.ds.isAuth()){//cart item added to db if user is logged in 
           this.cs.addToDB().subscribe((cartResp)=>{
-            console.log("cartResp",cartResp),
+            // console.log("cartResp",cartResp),
             (err:any)=>console.log(err)
           })
         }
       }
+
+      
 
 }

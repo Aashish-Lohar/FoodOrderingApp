@@ -27,13 +27,6 @@ export class HomeComponent implements OnInit {
       else{    this.food=this.fs.getAll()}
     })
 
-    // update cart from database 
-    this.ds.getProfile().subscribe((result)=>{
-      if(result.success){
-        this.cs.cart=result.data.cart;
-      }
-    })
-
   }
 
 

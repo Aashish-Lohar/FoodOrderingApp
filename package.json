@@ -20,6 +20,7 @@
     "@angular/router": "^14.0.0",
     "cors": "^2.8.5",
     "ng-starrating": "^1.0.20",
+    "ngx-ui-loader": "^13.0.0",
     "rxjs": "~7.5.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

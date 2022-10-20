@@ -18,15 +18,19 @@ export class HeaderComponent implements OnInit {
 
   ngDoCheck(){
     this.cartContent=0;
-    this.cs.getCart().map(item=>{
-      this.cartContent+=item.quantity;
-    });
-    console.log('cart number',this.cartContent);
+    if(this.ds.isAuth()){
+      this.cs.getCart().map(item=>{
+        this.cartContent+=item.quantity;
+      });
+
+    }
+    // console.log('cart number',this.cartContent);
     
   }
 
   logOut(){
     localStorage.removeItem('token');
+    // localStorage.removeItem('item');
     this.router.navigate(['/home'])
   }
 

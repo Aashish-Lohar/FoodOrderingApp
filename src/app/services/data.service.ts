@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { FormGroup} from '@angular/forms';
 import { Router } from '@angular/router';
+import { NgxUiLoaderService } from 'ngx-ui-loader';
 import { Observable } from 'rxjs';
 
 @Injectable({
@@ -9,7 +10,9 @@ import { Observable } from 'rxjs';
 })
 export class DataService {
 
-  constructor(private http:HttpClient,private router:Router) { }
+  constructor(private http:HttpClient,
+              private router:Router,
+              private ngxService:NgxUiLoaderService) { }
 
   loggedIn:boolean=false;
 
