@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { UserService } from '../services/user.service';
+import { User } from '../shared/models/user';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +13,11 @@ import { DataService } from '../services/data.service';
 })
 export class LoginComponent implements OnInit {
   myLogin!:FormGroup;
-  constructor(private data:DataService, private router:Router) { }
+  constructor(
+    private data:DataService, 
+    private router:Router,
+    private userService:UserService
+    ) { }
 
   ngOnInit(): void {
     this.myLogin=new FormGroup({
@@ -21,22 +27,11 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit(){
-    // console.log(this.myLogin)
-    this.data.onLogin(this.myLogin.value).subscribe((item)=>{
-      // console.log("item",item)
-      if(item.success){
-        alert(item.success);
-        localStorage.setItem("token",item.token);
-        this.data.isAuth()
-        this.router.navigate(['/home']);
-      }
-      else{
-        alert(item.message);
-      }
-     },
-     (err)=>{
-      alert(err)
-     });
+    console.log('this.myLogin.value',this.myLogin.value)
+    this.userService.login(this.myLogin.value).subscribe((user)=>{
+      console.log("response",user);
+      this.router.navigate(['/home']);
+    })
   }
 
 }

@@ -4,6 +4,7 @@ import { DataService } from '../services/data.service';
 import { CartService } from '../services/cart.service';
 import { FoodService } from '../services/food.service';
 import { Foods } from '../shared/models/food';
+import { CartApiService } from '../services/cart-api.service';
 
 @Component({
   selector: 'app-food-page',
@@ -12,33 +13,30 @@ import { Foods } from '../shared/models/food';
 })
 export class FoodPageComponent implements OnInit {
 
-  constructor(private route:ActivatedRoute,
-               private fs:FoodService,
+  constructor(
+                private route:ActivatedRoute,
+                private fs:FoodService,
                 private router:Router,
                 private cs:CartService,
-                private ds:DataService) { }
+) { }
   food: Foods = new Foods;
   ngOnInit(): void {
     this.route.params.subscribe(param=>{
       if(param['id'])
-      this.food=this.fs.getFoodById(param['id']);
-      console.log(this.food)
-    })
+      this.fs.getFoodById(param['id']).subscribe((serverFood)=>{
+        this.food=serverFood;
+      })
+    });
   }
 
+  // try for new approach
   addToCart(){
-    if(this.ds.isAuth()){
-      this.router.navigate(['/cart']);
-      this.cs.addToCart(this.food);
-    }
-    else{
-      this.router.navigate(['/login'])
-    }
+    this.cs.addToCart(this.food);
+    this.router.navigate(['/cart']);
   }
 
   addToFav(id:number){
-    this.fs.addToFav(id);
-    console.log('food',this.fs.getFoodById(id))
+    // this.fs.addToFav(id);
+    // console.log('food',this.fs.getFoodById(id))
   }
-
 }

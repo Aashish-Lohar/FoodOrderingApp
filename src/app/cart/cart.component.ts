@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CartService } from '../services/cart.service';
 import { DataService } from '../services/data.service';
 import { FoodService } from '../services/food.service';
+import { Cart } from '../shared/models/cart';
 import { CartItem } from '../shared/models/cartItem';
 
 @Component({
@@ -11,40 +12,26 @@ import { CartItem } from '../shared/models/cartItem';
 })
 export class CartComponent implements OnInit {
 
-  constructor(private cs:CartService, private fs:FoodService, private ds:DataService) { }
-  items!:CartItem[];
+  cart!:Cart;
   sum:number=0;
+  constructor(
+    private cs:CartService, 
+) {
+      this.cs.getCartObservable().subscribe((cart)=>{
+        this.cart=cart;
+        console.log('carrrrrt',this.cart);
+      })
+     }
   ngOnInit(): void {
-    // this.cartItemToDB();
-    this.loadCart()
   }
-  changeQty(item:CartItem,qty:string){
-    this.cs.changeQuantity(item,qty)
-    this.sum=this.cs.totalPrice();
-    this.cartItemToDB();
-  }
+
   removeFromCart(index:number){
     this.cs.removeFromCart(index)
-    this.sum=this.cs.totalPrice();
-    this.cartItemToDB();
   }
-  addToFav(id:number){
-    // console.log('fav id',id)
-    this.fs.addToFav(id)
-  }
-  loadCart(){
-    this.items= this.ds.isAuth()? this.cs.getCart():[]
-    this.items.map(item=> this.sum+=item.food.price*item.quantity);
-  }
-  cartItemToDB(){
-    if(this.ds.isAuth()){//cart item added to db if user is logged in 
-          this.cs.addToDB().subscribe((cartResp)=>{
-            // console.log("cartResp",cartResp),
-            (err:any)=>console.log(err)
-          })
-        }
-      }
 
-      
+  changeQty(cartItem:CartItem,quantityInString:string){
+    const quantity=parseInt(quantityInString);
+    this.cs.changeQuantity(cartItem.food.id,quantity);
+  }
 
 }

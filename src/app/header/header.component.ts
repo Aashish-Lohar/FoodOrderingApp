@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
 import { CartService } from '../services/cart.service';
+import { CartApiService } from '../services/cart-api.service';
+import { UserService } from '../services/user.service';
+import { User } from '../shared/models/user';
 
 @Component({
   selector: 'app-header',
@@ -10,32 +13,30 @@ import { CartService } from '../services/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private cs:CartService,private router:Router, private ds:DataService) { }
-  cartContent:number=0;
+  constructor(
+    private cs:CartService,
+    private router:Router, 
+    private ds:DataService,
+    private userService:UserService) { }
+  cartCount:number=0;
+  user!:User;
 
   ngOnInit(): void {
-  }
+    this.cs.getCartObservable().subscribe((newCart)=>{
+      this.cartCount=newCart.totalCount;
+    });
 
-  ngDoCheck(){
-    this.cartContent=0;
-    if(this.ds.isAuth()){
-      this.cs.getCart().map(item=>{
-        this.cartContent+=item.quantity;
-      });
-
-    }
-    // console.log('cart number',this.cartContent);
-    
+    this.userService.userObservable.subscribe((newUser)=>{
+      this.user=newUser
+    })
   }
 
   logOut(){
-    localStorage.removeItem('token');
-    // localStorage.removeItem('item');
-    this.router.navigate(['/home'])
+    this.userService.logout();
   }
 
   isAuth(){
-    return this.ds.isAuth();
+    return this.user.token;
   }
 
 }

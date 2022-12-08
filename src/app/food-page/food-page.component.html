@@ -1,9 +1,9 @@
 <app-notfound
-  *ngIf="!food"
-  notFoundMessage="Food Not Found"
+  [visible]="!food"
+  message="Food Not Found"
   resetLinkText="Back To Homepage">
 </app-notfound>
-<div *ngIf="food.id" class="container">
+<div *ngIf="food" class="container">
   <div class="img-container">
     <img [src]="food.imageUrl" [alt]="food.name"/>
   </div>
@@ -16,10 +16,11 @@
     </div>
     <div class="rating">
       <star-rating
-      [value]="food!.star"
+      *ngIf="food.star"
+      [value]="food.star"
       [totalstars]="5"
-      checkedcolor="red"
       uncheckedcolor="black"
+      checkedcolor="red"
       size="25px"
       [readonly]="true">
     </star-rating>
@@ -31,8 +32,8 @@
       </span>
     </div>
 
-    <div class="tag">
-        <app-tags  [foodPageTags]="food.tags"></app-tags>
+    <div class="tag" *ngIf="food.tags">
+        <app-tags [foodPageTags]="food.tags"></app-tags>
     </div>
 
     <div class="cook-time">

@@ -4,6 +4,8 @@ import { StarRatingComponent } from 'ng-starrating';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from '../services/cart.service';
 import { DataService } from '../services/data.service';
+import { Observable } from 'rxjs';
+import { Foods } from '../shared/models/food';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -12,19 +14,26 @@ import { DataService } from '../services/data.service';
 export class HomeComponent implements OnInit {
 
   constructor(private fs:FoodService,
-              private route:ActivatedRoute,
-              private cs:CartService,
-              private ds:DataService) { }
+              private route:ActivatedRoute) { }
   food:any[]=[];
   ngOnInit(): void {
+    let foodObservable:Observable<Foods[]>;
     this.route.params.subscribe(params=>{
       if(params['searchItem']){
-        this.food=this.fs.getAll().filter(food=>food.name.toLowerCase().includes(params['searchItem'].toLowerCase()))
+        foodObservable=this.fs.getFoodBySearch(params['searchItem']);
       }
       else if(params['tag']){
-        this.food=this.fs.getAllFoodByTag(params['tag']);
+         this.fs.getAll().subscribe((f)=>{
+          this.food=params['tag']=="All"?f:f.filter(food=>food.tags.includes(params['tag']))
+          console.log("tags food",this.food);
+        })
       }
-      else{    this.food=this.fs.getAll()}
+      else{    
+        foodObservable = this.fs.getAll();
+      }
+      foodObservable.subscribe((serverFoods)=>{
+        this.food=serverFoods;
+      })
     })
 
   }

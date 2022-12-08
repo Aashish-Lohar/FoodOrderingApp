@@ -1,15 +1,15 @@
 
-<h1 class="text-center"  *ngIf="items.length<1">Your Cart is Empty, Add your food now</h1>
+<h1 class="text-center"  *ngIf="!cart.items.length">Your Cart is Empty, Add your food now</h1>
 <div class="container-cart">
 
-    <div *ngIf="items.length>0" class="d-flex flex-column align-items-center">
-    <div class="card" *ngFor="let i of items; index as in">
+    <div *ngIf="cart.items" class="d-flex flex-column align-items-center">
+    <div class="card" *ngFor="let i of cart.items; index as in">
         <!-- <h5 class="card-header">{{i.food.name}}</h5> -->
         <div class="card-body d-flex ">
             <img class="item-img" src="{{i.food.imageUrl}}" alt="">
             <div class="item-content d-flex">
                 <div>
-                    <h3>{{i.food.name}}</h3>
+                    <a routerLink="/food/{{i.food.id}}">{{i.food.name}}</a>
                     <star-rating
                         [value]="i.food!.star"
                         [totalstars]="5"
@@ -20,15 +20,29 @@
                     </star-rating>
                     <h5 class="card-title">{{i.food.price| currency}}</h5>
                     <p class="card-text">
-                        Quantity: <button class="btn btn-secondary" (click)="changeQty(i,'minus')">-</button>
-                        <input type="text" disabled name="" id="" value="{{i.quantity }}">
-                        <button class="btn btn-secondary" (click)="changeQty(i,'plus')">+</button> 
+                        Quantity: 
+                        <!-- <button class="btn btn-secondary"
+                         (click)="changeQty(i,'minus')">-</button> -->
+                        <!-- <input type="text" disabled name="" id="" value="{{i.quantity }}"> -->
+                        <select #quantitySelect
+                        [value]="i.quantity"
+                        (change)="changeQty(i,quantitySelect.value)">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <!-- <button class="btn btn-secondary" (click)="changeQty(i,'plus')">+</button>  -->
                     </p>
                 </div>
                 <div class="cart-btns ">
-                    <span (click)="addToFav(i.food.id)" class="favorite {{i.food.favorite?'':'not'}}">❤</span>
+                    <!-- <span 
+                    (click)="addToFav(i.food.id)" 
+                    class="favorite {{i.food.favorite?'':'not'}}">
+                    ❤</span> -->
                     <button class="remove btn btn-dark" (click)="removeFromCart(in)">Remove</button>
-                    <button class=" order btn btn-warning">Order Now</button>
+                    <!-- <button class=" order btn btn-warning">Order Now</button> -->
                 </div>
                 <!-- <a href="#" class="btn btn-primary">Go somewhere</a> -->
             </div>
@@ -38,9 +52,9 @@
       
     </div>
     
-    <div *ngIf="items.length>0" class=" checkout">
-        <span>Subtotal: {{sum|currency}} </span>
-        <button class="btn btn-warning">Order Now All</button>
-    
+    <div *ngIf="cart.items.length" class=" checkout">
+        <div class="foods-count"><span>Total Food: </span>{{cart.totalCount}}</div>
+        <div class="total-price">Total Price: {{cart.totalPrice|currency}}</div> 
+        <a class="btn btn-warning" routerLink="/checkout">Checkout</a>
     </div>
 </div>
