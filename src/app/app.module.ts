@@ -19,6 +19,9 @@ import { ProfileComponent } from './profile/profile.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
+import { MapComponent } from './map/map.component';
+import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 @NgModule({
   declarations: [
     AppComponent,
@@ -32,7 +35,9 @@ import { ToastrModule } from 'ngx-toastr';
     NotfoundComponent,
     LoginComponent,
     RegisterComponent,
-    ProfileComponent
+    ProfileComponent,
+    CheckoutPageComponent,
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -43,6 +48,7 @@ import { ToastrModule } from 'ngx-toastr';
     ReactiveFormsModule,
     HttpClientModule,
     NgxUiLoaderModule,
+    LeafletModule,
     NgxUiLoaderHttpModule.forRoot({
       showForeground:true
     }),

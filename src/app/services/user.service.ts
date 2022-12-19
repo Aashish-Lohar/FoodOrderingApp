@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 // import { ToastrService } from 'ngx-toastr/toastr/toastr.service';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
 import { IUserLogin } from '../shared/models/IUserLogin';
+import { IUserRegister } from '../shared/models/IUserRegister';
 import { User } from '../shared/models/user';
 
 @Injectable({
@@ -20,16 +21,20 @@ export class UserService {
     this.userObservable = this.userSubject.asObservable();
    }
 
+   public get currentUser():User{
+    return this.userSubject.value;
+   }
+
    login(userLogin:IUserLogin):Observable<User>{
     return this.http.post<User>("http://localhost:3000/users/login",userLogin).pipe(
       tap({
         next:(user)=>{
-          console.log("in tap", user)
+          console.log('user user')
           this.setUserLocalStorage(user);
           this.userSubject.next(user);
           this.toastr.success(
             `Welcome to Gorana Food Corner`,
-            `Login Successful ${user.name}`
+            `Login Successful ${user.firstName}`
           )
         },
         error:(err)=>{
@@ -45,7 +50,28 @@ export class UserService {
     window.location.reload();
    }
 
+   register(userRegister:IUserRegister):Observable<User>{
+    console.log("userRegister",userRegister);
+    
+    return this.http.post<User>("http://localhost:3000/users/register",userRegister).pipe(
+      tap({
+        next:(user)=>{
+          this.setUserLocalStorage(user);
+          this.userSubject.next(user);
+          this.toastr.success(
+            `Welcome to Gorana Food Corner ${user.firstName}`,
+            'Register Successfull'
+          )
+        },
+        error:(err)=>{
+          this.toastr.error(err.error,'Registration Failed');
+        }
+      })
+    );
+   }
+
   private setUserLocalStorage(user:User){
+    console.log("setUserLocalStorage",user)
     localStorage.setItem(this.userKey,JSON.stringify(user));
   }
 

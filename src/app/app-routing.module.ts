@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router'; // CLI imports router
+import { GuardGuard } from './auth/guard.guard';
 import { CartComponent } from './cart/cart.component';
+import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { FoodPageComponent } from './food-page/food-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
@@ -18,6 +20,7 @@ const routes: Routes = [
   {path:'login',component:LoginComponent},
   {path:'register',component:RegisterComponent},
   {path:'profile',component:ProfileComponent},
+  {path:'checkout',component:CheckoutPageComponent, canActivate:[GuardGuard]},
   {path:'', redirectTo:'home', pathMatch:'full'},
 ]; // sets up routes constant where you define your routes
 

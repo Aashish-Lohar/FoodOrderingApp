@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { DataService } from '../services/data.service';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-register',
@@ -9,7 +11,7 @@ import { DataService } from '../services/data.service';
 })
 export class RegisterComponent implements OnInit {
   states:string[] = [ "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat","Haryana","Himachal Pradesh","Jammu and Kashmir","Jharkhand","Karnataka","Kerala","Madhya Pradesh","Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab","Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttarakhand","Uttar Pradesh","West Bengal","Andaman and Nicobar Islands","Chandigarh","Dadra and Nagar Haveli","Daman and Diu","Delhi","Lakshadweep","Puducherry"]
-  constructor(private data:DataService) { }
+  constructor(private data:DataService, private userService:UserService, private router:Router) { }
   visible:boolean=false;
   myRegister!:FormGroup;
   ngOnInit(): void {
@@ -17,7 +19,7 @@ export class RegisterComponent implements OnInit {
       firstName:new FormControl('',[Validators.required]),
       lastName:new FormControl('',[Validators.required]),
       email:new FormControl('',[Validators.required,Validators.email]),
-      number:new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]),
+      mobile:new FormControl('',[Validators.required,Validators.minLength(10),Validators.maxLength(12)]),
       password:new FormControl('',[Validators.required,Validators.minLength(6)]),
       confirmPassword:new FormControl('',[Validators.required,Validators.minLength(6)]),
       houseNumber:new FormControl('',[Validators.required]),
@@ -29,20 +31,14 @@ export class RegisterComponent implements OnInit {
   }
 
   onSubmit(){
-    // console.log('confirm',this.myRegister.value);
-    this.data.onRegister(this.myRegister.value).subscribe((item)=>{
-      console.log("item",item);
-      // this.router.navigate(['/home'])
-      if(item.success)
-      {
-        this.visible=true;
-        alert('user registered successfully');
-      }
-     },
-     (error)=>{
-      alert('error in registering the user');
-      console.log(error)}
-     );
+    if(this.myRegister.invalid) return;
+    const fv=this.myRegister.value;
+    console.log('fv',fv);
+    this.userService.register(fv).subscribe(serverResponse=>{
+      console.log("server response",serverResponse);
+      this.router.navigate(['/login']);
+    })
+
   }
 
 }

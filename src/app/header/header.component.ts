@@ -28,6 +28,7 @@ export class HeaderComponent implements OnInit {
 
     this.userService.userObservable.subscribe((newUser)=>{
       this.user=newUser
+      console.log("user token",newUser)
     })
   }
 

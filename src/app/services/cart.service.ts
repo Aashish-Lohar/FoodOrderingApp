@@ -32,9 +32,7 @@ export class CartService {
     this.cart.items.splice(index,1)
     this.setLocalStorage();
   }
-    getCart(){
-      return this.cart;
-    }
+
     changeQuantity(foodId:number,quantity:number){
       let cartItem=this.cart.items.find(item=>item.food.id==foodId);
       if(!cartItem)return;
@@ -52,6 +50,10 @@ export class CartService {
       return this.foodList.asObservable();
     }
 
+    getCart():Cart{
+      //gives current value of cart
+      return this.foodList.value; 
+    }
     private setLocalStorage(){
       this.cart.totalPrice=this.cart.items
       .reduce((prevSum, currentItem)=>prevSum + currentItem.price,0)

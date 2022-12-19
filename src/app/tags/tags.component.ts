@@ -17,7 +17,27 @@ export class TagsComponent implements OnInit {
     console.log('foodpagetags',this.foodPageTags)
     if(!this.foodPageTags)
     {
-      this.tags=this.fs.getAllTag()
+      // this.tags=this.fs.getAllTag()
+      this.fs.getAll().subscribe(f=>{
+        let stags:any[]=[]
+        f.map(food=>{
+          stags=stags.concat(...food.tags)
+        })
+        let b:any={}
+        stags.forEach((e)=>{
+            if(!b.hasOwnProperty(e)){
+                b[e]=1
+            }
+            else{
+                b[e]+=1
+            }        
+          })
+        stags =  Object.entries(b);
+        this.tags =  stags.map((f)=>{
+          return {name:f[0],count:f[1]}
+      })
+      this.tags.unshift({name:'All',count:this.tags.length})
+      })
     }
   }
 
