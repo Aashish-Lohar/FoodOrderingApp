@@ -6,6 +6,7 @@ import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { FoodPageComponent } from './food-page/food-page.component';
 import { HomeComponent } from './home/home.component';
 import { LoginComponent } from './login/login.component';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
 import { ProfileComponent } from './profile/profile.component';
 import { RegisterComponent } from './register/register.component';
 import { TesComponent } from './tes/tes.component';
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path:'register',component:RegisterComponent},
   {path:'profile',component:ProfileComponent},
   {path:'checkout',component:CheckoutPageComponent, canActivate:[GuardGuard]},
+  {path:'payment',component:PaymentPageComponent, canActivate:[GuardGuard]},
   {path:'', redirectTo:'home', pathMatch:'full'},
 ]; // sets up routes constant where you define your routes
 
