@@ -1,9 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { CartService } from '../services/cart.service';
-import { OrderService } from '../services/order.service';
 import { UserService } from '../services/user.service';
 import { Order } from '../shared/models/order';
 
@@ -19,9 +17,7 @@ export class CheckoutPageComponent implements OnInit {
     cartService:CartService,
     private formBuilder:FormBuilder,
     private userService:UserService,
-    private toastr:ToastrService,
-    private orderService:OrderService,
-    private router:Router
+    private toastr:ToastrService
     ) {
       const cart = cartService.getCart();
       this.order.items= cart.items;
@@ -48,23 +44,9 @@ export class CheckoutPageComponent implements OnInit {
       return;
     }
 
-    if(!this.order.addressLatLng){
-      this.toastr.warning('Please select your location on the map', 'Location');
-      return;
-    }
-
     this.order.name = this.fc['name'].value;
     this.order.address = this.fc['address'].value;
-
     console.log('order', this.order);
-    this.orderService.create(this.order).subscribe({
-      next:()=>{
-        this.router.navigate(['/payment']);
-      },
-      error:(err)=>{
-        this.toastr.error(err.error,'Cart')
-      }
-    })
     
 
   }

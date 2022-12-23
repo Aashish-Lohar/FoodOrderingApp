@@ -14,7 +14,7 @@ import { CartComponent } from './cart/cart.component';
 import { NotfoundComponent } from './notfound/notfound.component';
 import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
 import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -22,8 +22,6 @@ import { ToastrModule } from 'ngx-toastr';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
 import { MapComponent } from './map/map.component';
 import { LeafletModule } from '@asymmetrik/ngx-leaflet';
-import { AuthInterceptor } from './auth/auth.interceptor';
-import { PaymentPageComponent } from './payment-page/payment-page.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -39,8 +37,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
     RegisterComponent,
     ProfileComponent,
     CheckoutPageComponent,
-    MapComponent,
-    PaymentPageComponent
+    MapComponent
   ],
   imports: [
     BrowserModule,
@@ -61,9 +58,7 @@ import { PaymentPageComponent } from './payment-page/payment-page.component';
       newestOnTop:false
     })
   ],
-  providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor, multi:true}
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
