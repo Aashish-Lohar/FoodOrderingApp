@@ -1,0 +1,67 @@
+<div class="container">
+    <!-- <h2 class="">Payments Page</h2> -->
+    <div class="content">
+        <h2>Order Summary </h2>
+        <div class="summary">
+            <div>
+                <h3>Name:</h3>
+                <span>{{order.name}}</span>     
+            </div>
+            <div>
+                <h3>Address:</h3>
+                <span>{{order.address}} </span>
+            </div>
+        </div>
+        <table>
+            <tr>
+                <td colspan="5">
+                    <h3>Order Items</h3>
+                </td>
+            </tr>
+            <tr *ngFor="let item of order.items">
+                <td>
+                    <a routerLink="/food/{{item.food.id}}">
+                        <img [src]="item.food.imageUrl" alt="">
+                    </a>
+                </td>
+                <td>
+                    {{item.food.name}}
+                </td>
+                <td>
+                    {{item.food.price | currency}}
+                </td>
+                <td>
+                    {{item.quantity}}
+                </td>
+                <td>
+                    {{item.price| currency}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="3">
+                    
+                </td>
+                <td>
+                    <strong>
+                        Total:
+                    </strong>
+                </td>
+                <td>
+                    <strong>
+                        {{order.totalPrice | currency}}
+                    </strong>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="map">
+        <h3>Choose your address on map</h3>
+        <app-map [order]="order"></app-map>
+    </div>
+</div>
+
+<div class="buttons-container">
+    <div class="buttons">
+        <button >Go to payment</button>
+    </div>
+</div>
