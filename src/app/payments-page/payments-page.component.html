@@ -1,4 +1,4 @@
-<div class="container">
+<div class="paymentContainer">
     <!-- <h2 class="">Payments Page</h2> -->
     <div class="content">
         <h2>Order Summary </h2>
@@ -55,13 +55,13 @@
         </table>
     </div>
     <div class="map">
-        <h3>Choose your address on map</h3>
-        <app-map [order]="order"></app-map>
+        <h3>Shipping Address</h3>
+        <app-map [order]="order" [readonly]="true"></app-map>
     </div>
 </div>
 
 <div class="buttons-container">
     <div class="buttons">
-        <button >Go to payment</button>
+        <app-paypal></app-paypal>
     </div>
 </div>

@@ -1,5 +1,5 @@
 
-.container{
+.paymentContainer{
     margin-top: 1rem;
     display: flex;
     justify-content: center;
@@ -49,10 +49,10 @@ button:hover{
     cursor: pointer;
 }
 table{
-    /* width: 100%; */
+    width: 34rem;
     border: 1px solid #eeeeee;
     border-radius: 5rem;
-    margin-top: 1rem;
+    /* margin-top: 1rem; */
     padding: 0.5rem 1rem;
 }
 
