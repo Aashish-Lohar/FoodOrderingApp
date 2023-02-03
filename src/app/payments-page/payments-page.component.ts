@@ -11,17 +11,20 @@ import { Order } from '../shared/models/order';
 export class PaymentsPageComponent implements OnInit {
   order:Order = new Order();
   constructor(private orderService:OrderService, private router:Router) { 
-    orderService.getNewOrderForCurrentUser().subscribe({
-      next:(order)=>{
-        this.order = order;
-      },
-      error:(err)=>{
-        router.navigate(['/checkout']);
-      }
-    })
+    
   }
 
   ngOnInit(): void {
+    this.orderService.getNewOrderForCurrentUser().subscribe({
+      next:(order)=>{
+        this.order = order;
+        console.log("in subscribe",this.order);
+        
+      },
+      error:(err)=>{
+        this.router.navigate(['/checkout']);
+      }
+    })
   }
 
 }

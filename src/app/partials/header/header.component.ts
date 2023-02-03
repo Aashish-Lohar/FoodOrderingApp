@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { DataService } from '../../services/data.service';
 import { CartService } from '../../services/cart.service';
-import { CartApiService } from '../../services/cart-api.service';
 import { UserService } from '../../services/user.service';
 import { User } from '../../shared/models/user';
 

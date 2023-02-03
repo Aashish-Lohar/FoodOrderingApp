@@ -7,6 +7,7 @@ import { Order } from '../shared/models/order';
   providedIn: 'root'
 })
 export class OrderService {
+  [x: string]: any;
 
   constructor(private http:HttpClient) { }
 
@@ -18,4 +19,9 @@ export class OrderService {
   getNewOrderForCurrentUser():Observable<Order>{
     return this.http.get<Order>('http://localhost:3000/orders/newOrderFromCurrentUser');
   }
+
+  pay(order:Order):Observable<string>{
+    return this.http.post<string>('http://localhost:3000/pay',order);
+  }
+
 }

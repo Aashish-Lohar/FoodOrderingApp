@@ -4,7 +4,6 @@ import { DataService } from '../services/data.service';
 import { CartService } from '../services/cart.service';
 import { FoodService } from '../services/food.service';
 import { Foods } from '../shared/models/food';
-import { CartApiService } from '../services/cart-api.service';
 
 @Component({
   selector: 'app-food-page',
