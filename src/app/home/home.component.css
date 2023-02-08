@@ -6,12 +6,19 @@ ul.food{
     list-style: none;
     padding: 0;
 }
+ul li{
+    margin: 1rem;
+}
+ul li:hover{
+    box-shadow: 0 0 16px 0px;
+}
+
 ul li a{
-    height: 22.5rem;
+    /* height: 22.5rem; */
     width: 20rem;
     border: 1px solid whitesmoke;
-    border-radius: 1rem;
-    margin: 0.5rem;
+    /* border-radius: 1rem; */
+    /* margin: 0.5rem; */
     display: flex;
     flex-direction: column;
     overflow: hidden;

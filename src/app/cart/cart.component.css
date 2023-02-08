@@ -1,13 +1,20 @@
 .container-cart{
-    display: flex;
+    /* position: relative; */
 }
 
+.card-parent{
+    margin-bottom: 6rem;
+}
 .card{
     margin-top: 2rem;
-    width: 66%;
+    width: 55%;
+}
+.card-body{
+    justify-content: space-around;
+    flex-wrap: wrap;
 }
 img{
-    width: 30%;
+    width: 10rem;
     height: auto;
 }
 .item-content{
@@ -38,18 +45,21 @@ input{
 
 .checkout{
     font-size: 1.5rem;
-    position: sticky;
-    top: 4rem;
-    height: 7rem;
-    text-align: center;
-    /* display: flex; */
-    /* justify-content: space-between; */
-    width: 33%;
+    position: fixed;
+    bottom: 0;
+    /* height: 9.5rem; */
+    width: 100%;
     padding: 1rem;
     color: white;
     background: #e72929;
-    border: 1px solid #ddd8d8;
-    border-radius: 1rem;
+    /* border: 1px solid #ddd8d8;
+    border-radius: 1rem; */
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+.checkout-btn a{
+    width: 20rem;
 }
 
 .favorite{
@@ -64,4 +74,8 @@ input{
     text-align: center;
     font-size: 2rem;
     cursor: pointer;
+}
+.cart-item-name{
+    text-decoration: none;
+    color: #000;
 }

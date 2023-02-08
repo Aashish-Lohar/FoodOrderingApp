@@ -11,7 +11,7 @@ export class ProfileComponent implements OnInit {
   constructor(private data:DataService) { }
   userData:any={};
   ngOnInit(): void {
-    this.getProfile();
+    this.userData = JSON.parse(localStorage.getItem('user')||'')
   }
   
   getProfile(){
