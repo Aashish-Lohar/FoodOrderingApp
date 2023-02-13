@@ -19,7 +19,6 @@ export class CartComponent implements OnInit {
 ) {
       this.cs.getCartObservable().subscribe((cart)=>{
         this.cart=cart;
-        console.log('carrrrrt',this.cart);
       })
      }
   ngOnInit(): void {

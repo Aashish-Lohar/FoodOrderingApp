@@ -18,8 +18,6 @@ export class PaymentsPageComponent implements OnInit {
     this.orderService.getNewOrderForCurrentUser().subscribe({
       next:(order)=>{
         this.order = order;
-        console.log("in subscribe",this.order);
-        
       },
       error:(err)=>{
         this.router.navigate(['/checkout']);

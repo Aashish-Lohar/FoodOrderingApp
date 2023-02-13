@@ -1,8 +1,12 @@
 
+h2{
+    color:  #c15959;
+}
 .paymentContainer{
     margin-top: 1rem;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
 }
 .content{
     width: 35rem;
@@ -49,11 +53,12 @@ button:hover{
     cursor: pointer;
 }
 table{
-    width: 34rem;
-    border: 1px solid #eeeeee;
+    width: 100%;
+    border: 1px solid #7e7676;
     border-radius: 5rem;
-    /* margin-top: 1rem; */
+    margin-top: 1rem;
     padding: 0.5rem 1rem;
+    font-size: 0.8rem;
 }
 
 h3{
@@ -66,10 +71,10 @@ a:hover{
     opacity: .9;
 }
 td{
-    padding: 0.2rem;
-    border: 1px solid #eeeeee;
     height: 3rem;
     text-align: center;
+    padding: 0.5rem;
+    border: 1px solid #d0caca;
 }
 td img{
     width: 3rem;

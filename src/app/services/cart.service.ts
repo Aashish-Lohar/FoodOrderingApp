@@ -20,7 +20,7 @@ export class CartService {
   addToCart(food:Foods){
     let cartItem=this.cart.items.find(item=>item.food.id==food.id);
     if(cartItem){
-      return;
+      this.changeQuantity(cartItem.food.id,cartItem.quantity+1);
     }
     else{
       this.cart.items.push(new CartItem(food));

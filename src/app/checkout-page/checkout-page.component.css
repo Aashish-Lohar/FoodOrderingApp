@@ -1,4 +1,7 @@
 
+h2{
+color:  #c15959;
+}
 .container{
     margin-top: 1rem;
     display: flex;
@@ -39,11 +42,11 @@ button:hover{
 }
 table{
     width: 100%;
-    border: 1px solid #eeeeee;
+    border: 1px solid #7e7676;
     border-radius: 5rem;
     margin-top: 1rem;
-    padding: 0.5rem 1rem
-
+    padding: 0.5rem 1rem;
+    font-size: 0.8rem;
 }
 
 h3{
@@ -57,12 +60,15 @@ a:hover{
 }
 td{
     height: 3rem;
+    text-align: center;
+    padding: 0.5rem;
+    border: 1px solid #d0caca;
 }
 td img{
     width: 3rem;
     height: 3rem;
     object-fit: cover;
     border-radius: 1rem;
-    margin-left: 2rem;
+    /* margin-left: 2rem; */
 }
 

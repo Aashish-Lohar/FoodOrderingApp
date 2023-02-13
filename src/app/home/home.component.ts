@@ -25,7 +25,6 @@ export class HomeComponent implements OnInit {
       else if(params['tag']){
          this.fs.getAll().subscribe((f)=>{
           this.food=params['tag']=="All"?f:f.filter(food=>food.tags.includes(params['tag']))
-          console.log("tags food",this.food);
         })
       }
       else{    

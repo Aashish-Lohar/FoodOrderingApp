@@ -3,11 +3,8 @@
     align-items: center;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 3rem;
-    /* background: #000;   */
 }
 .container > *{
-    min-width: 25rem;
     max-width: 40rem;
 }
 img{
@@ -15,7 +12,7 @@ img{
     flex: 1 0;
     object-fit: cover;
     width: 80%;
-    margin: 3rem;
+    margin: 2rem;
 }
 .details{
     width: 100%;
@@ -25,7 +22,6 @@ img{
     border-radius: 3rem;
     padding: 2rem;
     color: black;
-    margin-left: 1rem;
 }
 .details .header{
     display: flex;

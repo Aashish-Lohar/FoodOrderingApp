@@ -26,12 +26,10 @@ export class CheckoutPageComponent implements OnInit {
       const cart = cartService.getCart();
       this.order.items= cart.items;
       this.order.totalPrice= cart.totalPrice;
-      console.log("this.order.totalPrice",this.order.items)
      }
 
   ngOnInit(): void {
     let {firstName,lastName, houseNumber, streetArea, city, state, pincode}= this.userService.currentUser;
-    console.log("current user",this.userService.currentUser)
     this.checkoutForm = this.formBuilder.group({
       name:[`${firstName} ${lastName}`, Validators.required],
       address:[`${houseNumber}, ${streetArea}, ${city}, ${state}, ${pincode}`, Validators.required]
@@ -55,7 +53,6 @@ export class CheckoutPageComponent implements OnInit {
 
     this.order.name = this.fc['name'].value;
     this.order.address = this.fc['address'].value;
-    console.log('order', this.order.items[0].price);
     
     this.orderService.create(this.order).subscribe({
       next:()=>{
