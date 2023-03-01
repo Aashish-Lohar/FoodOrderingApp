@@ -25,6 +25,9 @@ import { LeafletModule } from '@asymmetrik/ngx-leaflet';
 import { PaymentsPageComponent } from './payments-page/payments-page.component';
 import { AuthInterceptor } from './auth/auth.interceptor';
 import { PaypalComponent } from './partials/paypal/paypal.component';
+import { SuccessComponent } from './success/success.component';
+import { FailedComponent } from './failed/failed.component';
+import { OrdersComponent } from './orders/orders.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -42,7 +45,10 @@ import { PaypalComponent } from './partials/paypal/paypal.component';
     CheckoutPageComponent,
     MapComponent,
     PaymentsPageComponent,
-    PaypalComponent
+    PaypalComponent,
+    SuccessComponent,
+    FailedComponent,
+    OrdersComponent
   ],
   imports: [
     BrowserModule,

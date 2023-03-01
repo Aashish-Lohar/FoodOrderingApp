@@ -24,4 +24,8 @@ export class OrderService {
     return this.http.post<string>('http://localhost:3000/pay',order);
   }
 
+  getAllOrders():Observable<Order[]>{
+    return this.http.get<Order[]>('http://localhost:3000/orders');
+  }
+
 }

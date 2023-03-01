@@ -34,11 +34,14 @@ export class PaypalComponent implements OnInit {
     }).subscribe( async (res:any)=>{
       let stripe = await loadStripe('pk_test_51MMW2PSARWQdi33XL14tieK8XV0tW3rJOzYYeMjnzaYPufid6ZVSyIFp9SpOwBoEKpvYmjC7Yje0eJ47NosCpMKs00SfFSLWWd')
       localStorage.setItem("paymentResponse",JSON.stringify(res));
+      console.log("paymentResponse",stripe);
+      
       stripe?.redirectToCheckout({
         sessionId:res.id
       })
     })
-    
+    localStorage.removeItem(this.cartService.encryptText());
   }
+
   }
 

@@ -1,5 +1,8 @@
 
-<h1 class="text-center"  *ngIf="!cart.items.length">Your Cart is Empty, Add your food now</h1>
+<div *ngIf="!cart.items.length" class="empty-cart text-center my-5">
+    <h2  >Your Cart is Empty, Add your food now</h2>
+    <button routerLink="/home">Add you food now</button>
+</div>
 <div class="container-cart">
 
     <div *ngIf="cart.items" class="card-parent d-flex flex-column align-items-center">

@@ -29,13 +29,13 @@ export class UserService {
     return this.http.post<User>("http://localhost:3000/users/login",userLogin).pipe(
       tap({
         next:(user)=>{
-          console.log('user user')
           this.setUserLocalStorage(user);
           this.userSubject.next(user);
           this.toastr.success(
-            `Welcome to Gorana Food Corner`,
+            `Welcome to Gorana Food House`,
             `Login Successful ${user.firstName}`
           )
+          // window.location.reload();
         },
         error:(err)=>{
           this.toastr.error(err.error,`Login failed`);

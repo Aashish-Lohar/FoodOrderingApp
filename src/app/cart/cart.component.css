@@ -1,3 +1,20 @@
+
+.empty-cart h2{
+    color:  #c15959;
+}
+.empty-cart button{
+    color: white;
+    background-color: #e72929;
+    width: 30%;
+    padding: 0 3rem;
+    height: 3rem;
+    opacity: .8;
+    font-size: 1.3rem;
+    border: none;
+    border-radius: .5rem;
+    box-shadow: 2px;
+    margin: 2rem 0;
+}
 .container-cart{
     /* position: relative; */
 }
@@ -31,10 +48,7 @@ input{
     margin: 1rem;
     width: 8rem;
 }
-.text-center{
-    position: relative;
-    top: 40vh;
-}
+
 .cart-btns{
     display: flex;
     flex-direction: column;
