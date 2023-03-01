@@ -28,7 +28,7 @@ const routes: Routes = [
   {path:'payments',component:PaymentsPageComponent, canActivate:[GuardGuard]},
   {path:'payment-success',component:SuccessComponent},
   {path:'payment-failed',component:FailedComponent},
-  {path:'orders',component:OrdersComponent},
+  {path:'orders',component:OrdersComponent, canActivate:[GuardGuard]},
   {path:'', redirectTo:'home', pathMatch:'full'},
 ]; // sets up routes constant where you define your routes
 
