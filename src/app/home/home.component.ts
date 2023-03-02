@@ -6,6 +6,7 @@ import { CartService } from '../services/cart.service';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs';
 import { Foods } from '../shared/models/food';
+import { NavigationService } from '../services/navigation.service';
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
@@ -14,9 +15,13 @@ import { Foods } from '../shared/models/food';
 export class HomeComponent implements OnInit {
 
   constructor(private fs:FoodService,
-              private route:ActivatedRoute) { }
+              private route:ActivatedRoute,
+              private naviagtionService:NavigationService) { }
   food:any[]=[];
   ngOnInit(): void {
+
+    this.naviagtionService.reloadOnce();
+
     let foodObservable:Observable<Foods[]>;
     this.route.params.subscribe(params=>{
       if(params['searchItem']){
@@ -34,8 +39,8 @@ export class HomeComponent implements OnInit {
         this.food=serverFoods;
       })
     })
-
   }
+
 
 
   onRate($event:{oldValue:number, newValue:number, starRating:StarRatingComponent}) {

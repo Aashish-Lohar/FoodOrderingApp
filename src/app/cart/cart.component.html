@@ -1,7 +1,7 @@
 
 <div *ngIf="!cart.items.length" class="empty-cart text-center my-5">
-    <h2  >Your Cart is Empty, Add your food now</h2>
-    <button routerLink="/home">Add you food now</button>
+    <h2  >Your Cart is Empty</h2>
+    <button routerLink="/home">Add your food now</button>
 </div>
 <div class="container-cart">
 
@@ -24,9 +24,6 @@
                     <h5 class="card-title">{{i.food.price| currency:'INR':'symbol-narrow'}}</h5>
                     <p class="card-text">
                         Quantity: 
-                        <!-- <button class="btn btn-secondary"
-                         (click)="changeQty(i,'minus')">-</button> -->
-                        <!-- <input type="text" disabled name="" id="" value="{{i.quantity }}"> -->
                         <select #quantitySelect
                         [value]="i.quantity"
                         (change)="changeQty(i,quantitySelect.value)">

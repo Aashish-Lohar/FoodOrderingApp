@@ -34,6 +34,7 @@ export class LoginComponent implements OnInit {
   onSubmit(){
     this.userService.login(this.myLogin.value).subscribe((user)=>{
       // this.router.navigate(['/home']);
+      localStorage.setItem('reloadCount','1');
       this.navigation.back()
     })
   }

@@ -19,4 +19,8 @@ th{
 ul{
     padding: 0!important;
 }
+ul li{
+    border: 1px solid #dee2e6;
+    padding: 0.5rem 0;
+}
 span{padding: 0.5rem 1rem;}

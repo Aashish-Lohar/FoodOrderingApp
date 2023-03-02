@@ -16,7 +16,6 @@ import { LoginComponent } from './login/login.component';
 import { RegisterComponent } from './register/register.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ProfileComponent } from './profile/profile.component';
-import { NgxUiLoaderHttpModule, NgxUiLoaderModule } from 'ngx-ui-loader';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { CheckoutPageComponent } from './checkout-page/checkout-page.component';
@@ -28,6 +27,8 @@ import { PaypalComponent } from './partials/paypal/paypal.component';
 import { SuccessComponent } from './success/success.component';
 import { FailedComponent } from './failed/failed.component';
 import { OrdersComponent } from './orders/orders.component';
+import { LoaderComponent } from './partials/loader/loader.component';
+import { LoaderInterceptor } from './partials/loader/loader.interceptor';
 @NgModule({
   declarations: [
     AppComponent,
@@ -48,7 +49,8 @@ import { OrdersComponent } from './orders/orders.component';
     PaypalComponent,
     SuccessComponent,
     FailedComponent,
-    OrdersComponent
+    OrdersComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
@@ -58,11 +60,7 @@ import { OrdersComponent } from './orders/orders.component';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    NgxUiLoaderModule,
     LeafletModule,
-    NgxUiLoaderHttpModule.forRoot({
-      showForeground:true
-    }),
     ToastrModule.forRoot({
       timeOut:3000,
       positionClass:'toast-bottom-right',
@@ -70,7 +68,8 @@ import { OrdersComponent } from './orders/orders.component';
     })
   ],
   providers: [
-    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true}
+    {provide:HTTP_INTERCEPTORS, useClass:AuthInterceptor,multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass:LoaderInterceptor,multi:true}
   ],
   bootstrap: [AppComponent]
 })

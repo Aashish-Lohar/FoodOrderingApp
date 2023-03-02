@@ -24,4 +24,13 @@ export class NavigationService {
       this.router.navigateByUrl("/");
     }
   }
+
+  reloadOnce(){
+    let reloadCount = localStorage.getItem('reloadCount')
+    if(reloadCount==='1'){
+      localStorage.setItem('reloadCount','0');
+      window.location.reload();
+    }
+  }
+
 }

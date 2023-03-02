@@ -47,6 +47,7 @@ export class UserService {
    logout(){
     this.userSubject.next(new User());
     localStorage.removeItem(this.userKey);
+    localStorage.removeItem('Cart');
     window.location.reload();
    }
 

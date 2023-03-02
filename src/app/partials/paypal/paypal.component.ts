@@ -40,7 +40,9 @@ export class PaypalComponent implements OnInit {
         sessionId:res.id
       })
     })
-    localStorage.removeItem(this.cartService.encryptText());
+    // localStorage.removeItem(this.cartService.encryptText());
+    this.cartService.clearCart();
+    this.cartService.storeCart();
   }
 
   }
