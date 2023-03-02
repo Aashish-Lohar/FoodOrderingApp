@@ -26,7 +26,7 @@ export class UserService {
    }
 
    login(userLogin:IUserLogin):Observable<User>{
-    return this.http.post<User>("http://localhost:3000/users/login",userLogin).pipe(
+    return this.http.post<User>("https://food-ordering-backend-8sd0.onrender.com/users/login",userLogin).pipe(
       tap({
         next:(user)=>{
           this.setUserLocalStorage(user);
@@ -54,7 +54,7 @@ export class UserService {
    register(userRegister:IUserRegister):Observable<User>{
     console.log("userRegister",userRegister);
     
-    return this.http.post<User>("http://localhost:3000/users/register",userRegister).pipe(
+    return this.http.post<User>("https://food-ordering-backend-8sd0.onrender.com/users/register",userRegister).pipe(
       tap({
         next:(user)=>{
           this.setUserLocalStorage(user);

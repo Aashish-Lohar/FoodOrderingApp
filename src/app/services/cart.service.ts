@@ -82,7 +82,7 @@ export class CartService {
     const user = JSON.parse(localStorage.getItem('user') || '');
     if (localStorage.getItem('user')) {
       const userId = user.id;
-      this.http.post<User>(`http://localhost:3000/user/${userId}`, this.cart)
+      this.http.post<User>(`https://food-ordering-backend-8sd0.onrender.com/user/${userId}`, this.cart)
         .subscribe((response) => {
           console.log('updated cart', response);
         });

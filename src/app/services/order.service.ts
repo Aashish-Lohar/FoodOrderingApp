@@ -14,18 +14,18 @@ export class OrderService {
   create(order:Order){
     console.log("order service", order);
     
-    return this.http.post<Order>('http://localhost:3000/orders/create',order);
+    return this.http.post<Order>('https://food-ordering-backend-8sd0.onrender.com/orders/create',order);
   }
   getNewOrderForCurrentUser():Observable<Order>{
-    return this.http.get<Order>('http://localhost:3000/orders/newOrderFromCurrentUser');
+    return this.http.get<Order>('https://food-ordering-backend-8sd0.onrender.com/orders/newOrderFromCurrentUser');
   }
 
   pay(order:Order):Observable<string>{
-    return this.http.post<string>('http://localhost:3000/pay',order);
+    return this.http.post<string>('https://food-ordering-backend-8sd0.onrender.com/pay',order);
   }
 
   getAllOrders():Observable<Order[]>{
-    return this.http.get<Order[]>('http://localhost:3000/orders');
+    return this.http.get<Order[]>('https://food-ordering-backend-8sd0.onrender.com/orders');
   }
 
 }

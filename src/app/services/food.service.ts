@@ -28,15 +28,15 @@ export class FoodService {
   }
 
   getAll():Observable<Foods[]> {
-    return this.http.get<Foods[]>("http://localhost:3000/foods");
+    return this.http.get<Foods[]>("https://food-ordering-backend-8sd0.onrender.com/foods");
   }
 
   getFoodById(id:number):Observable<Foods> {
-    return this.http.get<Foods>("http://localhost:3000/foods/"+id);
+    return this.http.get<Foods>("https://food-ordering-backend-8sd0.onrender.com/foods/"+id);
   }
 
   getFoodBySearch(searchTerm:string):Observable<Foods[]> {
-    return this.http.get<Foods[]>("http://localhost:3000/foods/search/"+searchTerm);
+    return this.http.get<Foods[]>("https://food-ordering-backend-8sd0.onrender.com/foods/search/"+searchTerm);
   }
 
 

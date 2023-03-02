@@ -14,7 +14,7 @@ export class FailedComponent implements OnInit {
     this.check();
   }
   check(){
-    this.http.post('http://localhost:3000/paymentStatus',{
+    this.http.post('https://food-ordering-backend-8sd0.onrender.com/paymentStatus',{
       id:JSON.parse(localStorage.getItem("paymentResponse")||"").id
     }).subscribe((res)=>{
       localStorage.setItem("paymentIntent",JSON.stringify(res));
