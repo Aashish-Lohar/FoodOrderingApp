@@ -28,3 +28,17 @@
   .btn:hover{
     opacity: .9;
   }
+
+  .form-control{
+    width: 90%;
+  }
+  form{
+    width: 40%!important;
+  }
+
+  @media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    form{
+      width: 100%!important;
+    }
+  }

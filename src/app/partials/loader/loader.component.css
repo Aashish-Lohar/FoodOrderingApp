@@ -20,3 +20,20 @@
 img{
     border-radius: 15rem;
 }
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+    .loader-container{
+        position: relative;
+    }
+    .details{
+        margin: 0;
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        
+    }
+    img{
+        width: 60%;
+    }
+  }
