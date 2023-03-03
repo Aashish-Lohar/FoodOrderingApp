@@ -68,7 +68,8 @@ export class CartService {
 
   private getLocalStorage(): Cart {
     if (localStorage.getItem('user')) {
-      const userCart = JSON.parse(localStorage.getItem('user')||'').cart
+      let userCart = JSON.parse(localStorage.getItem('user')||'').cart;
+      userCart = userCart?userCart:new Cart();
       // const cartJson = localStorage.getItem(this.encryptText());
       const cartJson = localStorage.getItem('Cart');
       return cartJson ? JSON.parse(cartJson) : userCart;
