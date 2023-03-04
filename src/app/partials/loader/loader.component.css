@@ -23,9 +23,9 @@ img{
 
 @media only screen and (max-width: 768px) {
     /* For mobile phones: */
-    .loader-container{
+    /* .loader-container{
         position: relative;
-    }
+    } */
     .details{
         margin: 0;
         position: absolute;
